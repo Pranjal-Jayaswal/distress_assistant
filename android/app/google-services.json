@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "757480951275",
+    "firebase_url": "https://new-distress-assistant.firebaseio.com",
+    "project_id": "new-distress-assistant",
+    "storage_bucket": "new-distress-assistant.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:757480951275:android:74a9b9495b16d149831dae",
+        "android_client_info": {
+          "package_name": "com.pranjal.distress_assistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "757480951275-ogjh6drf5po5v64d5i5d8b7psf2caeki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz2-p8nE5YK-Lh_bj6GLJbD5FRIfsl1yQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "757480951275-ogjh6drf5po5v64d5i5d8b7psf2caeki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
