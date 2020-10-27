@@ -7,6 +7,7 @@ import 'package:shake/shake.dart';
 import 'package:sendsms/sendsms.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:distress_assistant/newContactScreen.dart';
 
 class mainScreen extends StatefulWidget {
   static const String id = 'main_screen';
@@ -16,7 +17,8 @@ class mainScreen extends StatefulWidget {
 }
 
 class _mainScreenState extends State<mainScreen> {
-  int _selectedIndex = null;
+  int _selectedIndex = 0;
+  double ngap = 20;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -37,14 +39,13 @@ class _mainScreenState extends State<mainScreen> {
       style: optionStyle,
     ),
     Text(
-      'Index 4: extra',
+      'Index 4: LogOut',
       style: optionStyle,
     ),
   ];
   Position position;
   @override
   void initState() {
-
     lat_long();
     ShakeDetector.autoStart(onPhoneShake: () {
       sseenndd();
@@ -66,9 +67,21 @@ class _mainScreenState extends State<mainScreen> {
   void Nclicked() {
     if (_selectedIndex == 0) {
       print('0 clicked');
-    } else if (_selectedIndex == 1) { print('1 clicked');
-    } else if (_selectedIndex == 2) { print('2 clicked');
-    } else if (_selectedIndex == 4) { print('3 clicked');
+    } else if (_selectedIndex == 1) {
+      setState(() {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => newContact(),
+            ));
+      });
+      print('1 clicked');
+    } else if (_selectedIndex == 2) {
+      print('2 clicked');
+    } else if (_selectedIndex == 3) {
+      print('3 clicked');
+    } else if (_selectedIndex == 4) {
+      print('4 clicked');
       setState(() {
         FirebaseAuth.instance.signOut();
         Navigator.push(
@@ -78,6 +91,12 @@ class _mainScreenState extends State<mainScreen> {
             ));
       });
     }
+  }
+
+  void ngapHandler() {
+    setState(() {
+      ngap = 7;
+    });
   }
 
   void sseenndd() async {
@@ -118,8 +137,11 @@ class _mainScreenState extends State<mainScreen> {
             Container(
               alignment: Alignment.center,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
+                  SizedBox(
+                    height: 3,
+                  ),
                   FlatButton(
                     onPressed: () {
                       setState(() {
@@ -143,8 +165,14 @@ class _mainScreenState extends State<mainScreen> {
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
-                          //side: BorderSide(color: Colors.white),
                         ),
+                        shadows: <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.red,
+                            offset: Offset(1.0, 6.0),
+                            blurRadius: 40.0,
+                          ),
+                        ],
                       ),
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(24, 8, 8, 8),
@@ -186,11 +214,11 @@ class _mainScreenState extends State<mainScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GNav(
-                          gap: 7,
+                          gap: 2,
                           activeColor: Colors.white,
-                          iconSize: 20,
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                          iconSize: 18,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: ngap, vertical: 5),
                           duration: Duration(milliseconds: 800),
                           tabBackgroundColor: Colors.grey[800],
                           tabs: [
@@ -199,25 +227,26 @@ class _mainScreenState extends State<mainScreen> {
                               text: 'Home',
                             ),
                             GButton(
-                              icon: LineIcons.heart_o,
-                              text: 'Likes',
+                              icon: LineIcons.book,
+                              text: 'Text',
                             ),
                             GButton(
-                              icon: LineIcons.search,
-                              text: 'Search',
-                            ),
-                            GButton(
-                              icon: LineIcons.sign_out,
-                              text: 'Sign Out',
+                              icon: LineIcons.wechat,
+                              text: 'Chat',
                             ),
                             GButton(
                               icon: LineIcons.random,
-                              text: 'extra',
+                              text: 'Feedback',
+                            ),
+                            GButton(
+                              icon: LineIcons.sign_out,
+                              text: 'LogOut',
                             ),
                           ],
                           selectedIndex: _selectedIndex,
                           onTabChange: (index) {
                             setState(() {
+                              ngapHandler();
                               _selectedIndex = index;
                               print('selected state: $_selectedIndex');
                               Nclicked();

@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:distress_assistant/roundBtn.dart';
 import 'package:distress_assistant/RegistrationScreen.dart';
 
-
 class loginPage extends StatefulWidget {
   @override
   _loginPageState createState() => _loginPageState();
@@ -35,6 +34,21 @@ class _loginPageState extends State<loginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
+
+              Container(
+                height: 130,
+                width: 130,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("myimage/200w.gif"),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
               TextField(
                 keyboardType: TextInputType.emailAddress,
                 controller: _emailInputController,

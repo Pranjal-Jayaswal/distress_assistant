@@ -37,9 +37,24 @@ class _registrationScreenState extends State<registrationScreen> {
             padding: EdgeInsets.symmetric(horizontal: 24.0),
             alignment: Alignment.center,
             child: SingleChildScrollView(
+
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Container(
+                    height: 130,
+                    width: 130,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage("myimage/200w.gif"),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
                   TextField(
                     controller: _emailInputController,
                     keyboardType: TextInputType.emailAddress,
