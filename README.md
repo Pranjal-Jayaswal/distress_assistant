@@ -1,16 +1,24 @@
 # distress_assistant
 
-A new Flutter application.
 
-## Getting Started
+• A cross platform mobile application built to impart assistance and medium
+of connection to dear ones in time of stress on one shake/tap of device.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+• Has a inbuilt group chat functionality, voice call feature, location sharing
+feature via text SMS with authentication service and intriguing UI.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+• Built using Dart, Flutter,different APIs and Firebase.
+
+
+![WhatsApp Image 2020-10-27 at 16 38 15](https://user-images.githubusercontent.com/63522945/97294453-055a2980-1874-11eb-8abb-85ffb172d7e6.jpeg)
+
+
+![WhatsApp Image 2020-10-27 at 16 38 37 (1)](https://user-images.githubusercontent.com/63522945/97294469-09864700-1874-11eb-8435-95e55c8da45c.jpeg)
+
+
+![WhatsApp Image 2020-10-27 at 16 38 37 (2)](https://user-images.githubusercontent.com/63522945/97294474-0ab77400-1874-11eb-8fdf-f858aa1a5376.jpeg)
+
+
+![WhatsApp Image 2020-10-27 at 16 38 37](https://user-images.githubusercontent.com/63522945/97294477-0c813780-1874-11eb-9e35-51362a49ef3e.jpeg)
