@@ -1,3 +1,5 @@
+import 'package:distress_assistant/chatScreen.dart';
+import 'package:distress_assistant/mainScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ class newContact extends StatefulWidget {
 
 class _newContactState extends State<newContact> {
   int _selectedIndex = 1;
-  double ngap = 20;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
@@ -30,15 +31,14 @@ class _newContactState extends State<newContact> {
       'Index 2: Search',
       style: optionStyle,
     ),
+
     Text(
-      'Index 3: Profile',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 4: LogOut',
+      'Index 3: LogOut',
       style: optionStyle,
     ),
   ];
+
+
   List<String> people = [];
   TextEditingController _controllerPeople = new TextEditingController();
   TextEditingController _controllermsg = new TextEditingController();
@@ -46,7 +46,13 @@ class _newContactState extends State<newContact> {
 
   void Nclicked() {
     if (_selectedIndex == 0) {
-      print('0 clicked');
+      setState(() {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => mainScreen(),
+            ));
+      });
     } else if (_selectedIndex == 1) {
       setState(() {
         Navigator.push(
@@ -55,13 +61,14 @@ class _newContactState extends State<newContact> {
               builder: (context) => newContact(),
             ));
       });
-      print('1 clicked');
     } else if (_selectedIndex == 2) {
-      print('2 clicked');
-    } else if (_selectedIndex == 3) {
-      print('3 clicked');
-    } else if (_selectedIndex == 4) {
-      print('4 clicked');
+      setState(() {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => chatScreen(),
+            ));
+      });    } else if (_selectedIndex == 3) {
       setState(() {
         FirebaseAuth.instance.signOut();
         Navigator.push(
@@ -73,11 +80,7 @@ class _newContactState extends State<newContact> {
     }
   }
 
-  void ngapHandler() {
-    setState(() {
-      ngap = 7;
-    });
-  }
+
 
   Widget _phoneTile(String name) {
     return Padding(
@@ -245,7 +248,7 @@ class _newContactState extends State<newContact> {
                         activeColor: Colors.white,
                         iconSize: 20,
                         padding:
-                            EdgeInsets.symmetric(horizontal: ngap, vertical: 5),
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         duration: Duration(milliseconds: 800),
                         tabBackgroundColor: Colors.grey[800],
                         tabs: [
@@ -255,16 +258,13 @@ class _newContactState extends State<newContact> {
                           ),
                           GButton(
                             icon: LineIcons.book,
-                            text: 'Text',
+                            text: 'Contact',
                           ),
                           GButton(
                             icon: LineIcons.wechat,
                             text: 'Chat',
                           ),
-                          GButton(
-                            icon: LineIcons.random,
-                            text: 'Feedback',
-                          ),
+
                           GButton(
                             icon: LineIcons.sign_out,
                             text: 'LogOut',
@@ -273,7 +273,6 @@ class _newContactState extends State<newContact> {
                         selectedIndex: _selectedIndex,
                         onTabChange: (index) {
                           setState(() {
-                            ngapHandler();
                             _selectedIndex = index;
                             print('selected state: $_selectedIndex');
                             Nclicked();

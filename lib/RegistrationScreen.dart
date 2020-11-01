@@ -6,7 +6,6 @@ import 'package:distress_assistant/roundBtn.dart';
 import 'package:distress_assistant/mainScreen.dart';
 
 class registrationScreen extends StatefulWidget {
-  static const String id = 'registration_screen';
 
   @override
   _registrationScreenState createState() => _registrationScreenState();
