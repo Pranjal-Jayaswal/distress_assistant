@@ -31,13 +31,11 @@ class _newContactState extends State<newContact> {
       'Index 2: Search',
       style: optionStyle,
     ),
-
     Text(
       'Index 3: LogOut',
       style: optionStyle,
     ),
   ];
-
 
   List<String> people = [];
   TextEditingController _controllerPeople = new TextEditingController();
@@ -68,7 +66,8 @@ class _newContactState extends State<newContact> {
             MaterialPageRoute(
               builder: (context) => chatScreen(),
             ));
-      });    } else if (_selectedIndex == 3) {
+      });
+    } else if (_selectedIndex == 3) {
       setState(() {
         FirebaseAuth.instance.signOut();
         Navigator.push(
@@ -79,8 +78,6 @@ class _newContactState extends State<newContact> {
       });
     }
   }
-
-
 
   Widget _phoneTile(String name) {
     return Padding(
@@ -120,8 +117,8 @@ class _newContactState extends State<newContact> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return SafeArea(
+      child: Scaffold(
         appBar: AppBar(
           title: Text(
             'Add Contact and Message',
@@ -264,7 +261,6 @@ class _newContactState extends State<newContact> {
                             icon: LineIcons.wechat,
                             text: 'Chat',
                           ),
-
                           GButton(
                             icon: LineIcons.sign_out,
                             text: 'LogOut',

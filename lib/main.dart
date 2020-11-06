@@ -5,6 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:distress_assistant/loginPage.dart';
 
+User user;
+var a=7;
 void main() {
   runApp(MyApp());
 }
@@ -38,6 +40,7 @@ class LandingPage extends StatelessWidget {
                 stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.active) {
+
                     User user = snapshot.data;
 
                     if (user == null) {

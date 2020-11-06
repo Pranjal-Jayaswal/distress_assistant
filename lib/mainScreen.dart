@@ -181,18 +181,6 @@ class _mainScreenState extends State<mainScreen> {
                       ),
                     ),
                   ),
-                  MaterialButton(
-                    child: Text('logout'),
-                    color: Colors.blue,
-                    onPressed: () async {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => loginPage(),
-                          ));
-                    },
-                  ),
                   Container(
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -7,13 +8,35 @@ import 'loginPage.dart';
 import 'mainScreen.dart';
 import 'newContactScreen.dart';
 
+final FirebaseAuth auth = FirebaseAuth.instance;
+
+User user;
+void inputData() {
+  user = auth.currentUser;
+  final uid = user.uid;
+}
+
+final _firestore = FirebaseFirestore.instance;
+User loggedInUser;
+
+// ignore: camel_case_types
 class chatScreen extends StatefulWidget {
   @override
   _chatScreenState createState() => _chatScreenState();
 }
 
+// ignore: camel_case_types
 class _chatScreenState extends State<chatScreen> {
   int _selectedIndex = 2;
+  final messageTextController = TextEditingController();
+  String messageText;
+
+  @override
+  void initState() {
+    super.initState();
+    // getCurrentUser();
+    inputData();
+  }
 
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -36,6 +59,7 @@ class _chatScreenState extends State<chatScreen> {
     ),
   ];
 
+  // ignore: non_constant_identifier_names
   void Nclicked() {
     if (_selectedIndex == 0) {
       setState(() {
@@ -102,7 +126,64 @@ class _chatScreenState extends State<chatScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text('chat screen'),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        MessagesStream(),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border(
+                              top: BorderSide(color: Colors.amber, width: 0.5),
+                            ),
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Expanded(
+                                child: TextField(
+                                  controller: messageTextController,
+                                  style: TextStyle(color: Colors.white),
+                                  onChanged: (value) {
+                                    messageText = value;
+                                  },
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 10.0, horizontal: 20.0),
+                                    hintText: 'Type your message here...',
+                                    border: InputBorder.none,
+                                  ),
+                                ),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  messageTextController.clear();
+                                  FirebaseFirestore.instance
+                                      .collection('mymessage')
+                                      .add({
+                                    'text': messageText,
+                                    'sender': user.email,
+                                  });
+                                },
+                                child: Text(
+                                  'Send',
+                                  style: TextStyle(
+                                    color: Colors.lightBlueAccent,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   Container(
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(
@@ -125,7 +206,7 @@ class _chatScreenState extends State<chatScreen> {
                           activeColor: Colors.white,
                           iconSize: 20,
                           padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           duration: Duration(milliseconds: 800),
                           tabBackgroundColor: Colors.grey[800],
                           tabs: [
@@ -141,7 +222,6 @@ class _chatScreenState extends State<chatScreen> {
                               icon: LineIcons.wechat,
                               text: 'Chat',
                             ),
-
                             GButton(
                               icon: LineIcons.sign_out,
                               text: 'LogOut',
@@ -162,6 +242,100 @@ class _chatScreenState extends State<chatScreen> {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MessagesStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('mymessage').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.lightBlueAccent,
+            ),
+          );
+        }
+        final messages = snapshot.data.docs.reversed;
+        List<MessageBubble> messageBubbles = [];
+
+        for (var message in messages) {
+          final messageText = message.data()['text'];
+
+          final messageSender = message.data()['sender'];
+
+          final currentUser = user.email;
+
+          final messageBubble = MessageBubble(
+            sender: messageSender,
+            text: messageText,
+            isMe: currentUser == messageSender,
+          );
+          messageBubbles.add(messageBubble);
+        }
+        return Expanded(
+          child: ListView(
+            reverse: true,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            children: messageBubbles,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MessageBubble extends StatelessWidget {
+  MessageBubble({this.sender, this.text, this.isMe});
+
+  final String sender;
+  final String text;
+  final bool isMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            sender,
+            style: TextStyle(
+              fontSize: 12.0,
+              color: Colors.cyan,
+            ),
+          ),
+          Material(
+            borderRadius: isMe
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0))
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+            elevation: 5.0,
+            color: isMe ? Colors.lightBlueAccent : Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: isMe ? Colors.white : Colors.black54,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
