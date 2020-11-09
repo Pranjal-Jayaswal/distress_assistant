@@ -35,7 +35,6 @@ dependencies:
   firebase_messaging: ^7.0.3
   cloud_firestore: ^0.14.2
   url_launcher: ^5.7.4
-  popup_menu: ^1.0.5
 
 
 

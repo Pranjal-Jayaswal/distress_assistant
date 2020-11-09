@@ -10,8 +10,6 @@ import 'package:line_icons/line_icons.dart';
 import 'package:distress_assistant/newContactScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'chatScreen.dart';
-import 'package:popup_menu/popup_menu.dart';
-
 
 class mainScreen extends StatefulWidget {
   @override
@@ -19,11 +17,6 @@ class mainScreen extends StatefulWidget {
 }
 
 class _mainScreenState extends State<mainScreen> {
-  PopupMenu menu;
-  GlobalKey btnKey = GlobalKey();
-  GlobalKey btnKey2 = GlobalKey();
-  GlobalKey btnKey3 = GlobalKey();
-
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -52,50 +45,13 @@ class _mainScreenState extends State<mainScreen> {
     ShakeDetector.autoStart(onPhoneShake: () {
       sseenndd();
     });
-    menu = PopupMenu(items: [
-      // MenuItem(title: 'Copy', image: Image.asset('assets/copy.png')),
-      // MenuItem(title: 'Home', image: Icon(Icons.home, color: Colors.white,)),
-      MenuItem(
-          title: 'Mail',
-          image: Icon(
-            Icons.mail,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'Power',
-          image: Icon(
-            Icons.power,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'Setting',
-          image: Icon(
-            Icons.settings,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'PopupMenu',
-          image: Icon(
-            Icons.menu,
-            color: Colors.white,
-          ))
-    ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
+
     super.initState();
   }
-  void stateChanged(bool isShow) {
-    print('menu is ${isShow ? 'showing' : 'closed'}');
-  }
 
-  void onClickMenu(MenuItemProvider item) {
-    print('Click menu -> ${item.menuTitle}');
-  }
+  void call1() async{
+   await launch('tel:9264472977');
 
-  void onDismiss() {
-    print('Menu is dismiss');
-  }
-
-  void call100() async {
-    await launch('tel:9264472977');
   }
 
   void lat_long() async {
@@ -230,10 +186,19 @@ class _mainScreenState extends State<mainScreen> {
                       ),
                     ),
                   ),
-
+                  FlatButton(
+                    onPressed: null,
+                    child: Container(
+                      child: Text(
+                        '8340792564',
+                        style: TextStyle(
+                            color: Colors.white, backgroundColor: Colors.green),
+                      ),
+                    ),
+                  ),
                   FlatButton(
                       onPressed: () {
-                        call100();
+                        call1();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(28.0),
@@ -244,6 +209,7 @@ class _mainScreenState extends State<mainScreen> {
                               backgroundColor: Colors.green),
                         ),
                       )),
+                  FlatButton(onPressed: null, child: Text('100')),
                   Container(
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(
