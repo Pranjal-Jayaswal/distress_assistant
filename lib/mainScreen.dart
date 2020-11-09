@@ -10,6 +10,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:distress_assistant/newContactScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'chatScreen.dart';
+import 'package:radial_menu/radial_menu.dart';
 
 class mainScreen extends StatefulWidget {
   @override
@@ -17,6 +18,23 @@ class mainScreen extends StatefulWidget {
 }
 
 class _mainScreenState extends State<mainScreen> {
+  Future<Null> call100() async {
+    await launch('tel:9264472977');
+  }
+
+  List<RadialMenuEntry> radialMenuEntries = [
+    RadialMenuEntry(
+        icon: Icons.restaurant, text: 'Restaurant', color: Colors.red),
+    RadialMenuEntry (
+
+     
+      icon: Icons.security,
+      text: 'Hotel',
+      iconColor: Colors.lightBlue,
+    ),
+    RadialMenuEntry(icon: Icons.pool, text: 'Pool', iconSize: 36),
+    RadialMenuEntry(icon: Icons.shopping_cart, text: 'Shop'),
+  ];
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -49,10 +67,6 @@ class _mainScreenState extends State<mainScreen> {
     super.initState();
   }
 
-  void call1() async{
-   await launch('tel:9264472977');
-
-  }
 
   void lat_long() async {
     try {
@@ -186,19 +200,18 @@ class _mainScreenState extends State<mainScreen> {
                       ),
                     ),
                   ),
-                  FlatButton(
-                    onPressed: null,
-                    child: Container(
-                      child: Text(
-                        '8340792564',
-                        style: TextStyle(
-                            color: Colors.white, backgroundColor: Colors.green),
-                      ),
-                    ),
-                  ),
+                  Container(height: 40),
+                  Transform.translate(
+                    offset: Offset(-220 / 2 + 40, 0),
+                    child: RadialMenu(
+                      size: 220,
+                      entrySize: 120,
+                      entries: radialMenuEntries,
+                    ),),
+
                   FlatButton(
                       onPressed: () {
-                        call1();
+                        call100();
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(28.0),
