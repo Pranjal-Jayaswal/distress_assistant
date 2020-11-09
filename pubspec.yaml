@@ -34,7 +34,8 @@ dependencies:
   line_icons: ^0.2.0
   firebase_messaging: ^7.0.3
   cloud_firestore: ^0.14.2
-  provider: ^4.3.2+2
+  url_launcher: ^5.7.4
+  radial_menu: ^0.0.1
 
 
 

@@ -8,11 +8,10 @@ import 'package:sendsms/sendsms.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:distress_assistant/newContactScreen.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'chatScreen.dart';
 
 class mainScreen extends StatefulWidget {
-
   @override
   _mainScreenState createState() => _mainScreenState();
 }
@@ -34,7 +33,6 @@ class _mainScreenState extends State<mainScreen> {
       'Index 2: Search',
       style: optionStyle,
     ),
-
     Text(
       'Index 3: LogOut',
       style: optionStyle,
@@ -51,6 +49,11 @@ class _mainScreenState extends State<mainScreen> {
     super.initState();
   }
 
+  void call1() async{
+   await launch('tel:9264472977');
+
+  }
+
   void lat_long() async {
     try {
       position = await Geolocator.getCurrentPosition(
@@ -60,6 +63,7 @@ class _mainScreenState extends State<mainScreen> {
       print(e);
     }
   }
+
   void Nclicked() {
     if (_selectedIndex == 0) {
       setState(() {
@@ -84,7 +88,8 @@ class _mainScreenState extends State<mainScreen> {
             MaterialPageRoute(
               builder: (context) => chatScreen(),
             ));
-      });    } else if (_selectedIndex == 3) {
+      });
+    } else if (_selectedIndex == 3) {
       setState(() {
         FirebaseAuth.instance.signOut();
         Navigator.push(
@@ -181,6 +186,30 @@ class _mainScreenState extends State<mainScreen> {
                       ),
                     ),
                   ),
+                  FlatButton(
+                    onPressed: null,
+                    child: Container(
+                      child: Text(
+                        '8340792564',
+                        style: TextStyle(
+                            color: Colors.white, backgroundColor: Colors.green),
+                      ),
+                    ),
+                  ),
+                  FlatButton(
+                      onPressed: () {
+                        call1();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(28.0),
+                        child: Text(
+                          '9264472977',
+                          style: TextStyle(
+                              color: Colors.white,
+                              backgroundColor: Colors.green),
+                        ),
+                      )),
+                  FlatButton(onPressed: null, child: Text('100')),
                   Container(
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(
@@ -203,7 +232,7 @@ class _mainScreenState extends State<mainScreen> {
                           activeColor: Colors.white,
                           iconSize: 20,
                           padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           duration: Duration(milliseconds: 800),
                           tabBackgroundColor: Colors.grey[800],
                           tabs: [
@@ -219,7 +248,6 @@ class _mainScreenState extends State<mainScreen> {
                               icon: LineIcons.wechat,
                               text: 'Chat',
                             ),
-
                             GButton(
                               icon: LineIcons.sign_out,
                               text: 'LogOut',

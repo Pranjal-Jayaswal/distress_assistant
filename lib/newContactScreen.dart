@@ -213,7 +213,7 @@ class _newContactState extends State<newContact> {
                           ));
                     },
                     child: Text(
-                      'SAVE ',
+                      'SAVE',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
