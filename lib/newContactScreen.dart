@@ -8,7 +8,12 @@ import 'package:line_icons/line_icons.dart';
 
 import 'loginPage.dart';
 
+
+List<String> people = [];
+ String msg ;
+
 class newContact extends StatefulWidget {
+
   static const String id = 'newContact';
   @override
   _newContactState createState() => _newContactState();
@@ -37,10 +42,8 @@ class _newContactState extends State<newContact> {
     ),
   ];
 
-  List<String> people = [];
   TextEditingController _controllerPeople = new TextEditingController();
   TextEditingController _controllermsg = new TextEditingController();
-  String msg = null;
 
   void Nclicked() {
     if (_selectedIndex == 0) {
@@ -138,7 +141,7 @@ class _newContactState extends State<newContact> {
               width: MediaQuery.of(context).size.width,
               fit: BoxFit.cover,
             ),
-            ListView(
+            Column(
               children: <Widget>[
                 people == null || people.isEmpty
                     ? Container(
@@ -157,7 +160,6 @@ class _newContactState extends State<newContact> {
                           ),
                         ),
                       ),
-                SizedBox(height: 20),
                 ListTile(
                   leading: Icon(Icons.people, color: Colors.white),
                   title: TextField(
@@ -176,7 +178,7 @@ class _newContactState extends State<newContact> {
                     onPressed: _controllerPeople.text.isEmpty
                         ? null
                         : () => setState(() {
-                              people.add(_controllerPeople.text.toString());
+                              people.add("+91" + _controllerPeople.text.toString());
                               _controllerPeople.clear();
                               print(people);
                             }),
@@ -220,10 +222,9 @@ class _newContactState extends State<newContact> {
                     color: Color(0xFF8F4FA0),
                   ),
                 ),
-                SizedBox(
-                  height: 376,
-                ),
+                Expanded(child: Column()),
                 Container(
+                  alignment: Alignment.bottomCenter,
                   decoration: ShapeDecoration(
                     gradient: LinearGradient(
                       begin: Alignment.topRight,
@@ -245,7 +246,7 @@ class _newContactState extends State<newContact> {
                         activeColor: Colors.white,
                         iconSize: 20,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                         duration: Duration(milliseconds: 800),
                         tabBackgroundColor: Colors.grey[800],
                         tabs: [
@@ -275,10 +276,13 @@ class _newContactState extends State<newContact> {
                           });
                         }),
                   ),
-                )
+                ),
+
               ],
             ),
+
           ],
+
         ),
       ),
     );

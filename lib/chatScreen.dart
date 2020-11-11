@@ -151,10 +151,12 @@ class _chatScreenState extends State<chatScreen> {
                                   decoration: InputDecoration(
                                     hintStyle: TextStyle(
                                         color: Colors.white,
+
                                         fontWeight: FontWeight.w100),
                                     contentPadding: EdgeInsets.symmetric(
                                         vertical: 10.0, horizontal: 20.0),
                                     hintText: 'Type your message here...',
+
                                     border: InputBorder.none,
                                   ),
                                 ),

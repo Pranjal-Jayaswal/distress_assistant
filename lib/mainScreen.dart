@@ -11,6 +11,9 @@ import 'package:distress_assistant/newContactScreen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'chatScreen.dart';
 
+String msg1 = "";
+List<String> people2 = people;
+
 class mainScreen extends StatefulWidget {
   @override
   _mainScreenState createState() => _mainScreenState();
@@ -43,27 +46,34 @@ class _mainScreenState extends State<mainScreen> {
   void initState() {
     lat_long();
     ShakeDetector.autoStart(onPhoneShake: () {
-      sseenndd();
+      start();
     });
-
+    if (msg != null) {
+      msg1 = msg;
+    }
     super.initState();
   }
 
   void call1() async {
     await launch('tel:100');
   }
+
   void call2() async {
     await launch('tel:102');
   }
+
   void call3() async {
     await launch('tel:101');
   }
+
   void call4() async {
     await launch('tel:1091');
   }
+
   void call5() async {
     await launch('tel:1078');
   }
+
   void call6() async {
     await launch('tel:1363');
   }
@@ -115,15 +125,21 @@ class _mainScreenState extends State<mainScreen> {
     }
   }
 
-  void sseenndd() async {
-    String phoneNumber = "+918340792564";
-    String message = "$position";
+  void sseenndd(phonenumber) async {
+    // String phoneNumber = "";
+    String message = "My location is $position" + " $msg1";
     await Sendsms.onGetPermission();
     setState(() async {
       if (await Sendsms.hasPermission()) {
-        await Sendsms.onSendSMS(phoneNumber, message);
+        await Sendsms.onSendSMS(phonenumber, message);
       }
     });
+  }
+
+  void start() async {
+    for (int i = 0; i < people2.length; i++) {
+      sseenndd(people2.elementAt(i));
+    }
   }
 
   @override
@@ -162,7 +178,7 @@ class _mainScreenState extends State<mainScreen> {
                     onPressed: () {
                       setState(() {
                         lat_long();
-                        sseenndd();
+                        start();
                       });
                     },
                     child: Container(
@@ -242,7 +258,6 @@ class _mainScreenState extends State<mainScreen> {
                           children: <Widget>[
                             FlatButton(
                               padding: EdgeInsets.all(9),
-
                               onPressed: () {
                                 call1();
                               },
@@ -275,7 +290,6 @@ class _mainScreenState extends State<mainScreen> {
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(9, 28, 9, 15),
                                   child: Text(
-
                                     "Dial  100",
                                     style: TextStyle(
                                         fontSize: 20,
@@ -349,7 +363,7 @@ class _mainScreenState extends State<mainScreen> {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                        BorderRadius.all(Radius.circular(10)),
                                   ),
                                   shadows: <BoxShadow>[
                                     BoxShadow(
@@ -376,7 +390,6 @@ class _mainScreenState extends State<mainScreen> {
                           children: <Widget>[
                             FlatButton(
                               padding: EdgeInsets.all(9),
-
                               onPressed: () {
                                 call4();
                               },
@@ -396,7 +409,7 @@ class _mainScreenState extends State<mainScreen> {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                        BorderRadius.all(Radius.circular(10)),
                                   ),
                                   shadows: <BoxShadow>[
                                     BoxShadow(
@@ -439,7 +452,7 @@ class _mainScreenState extends State<mainScreen> {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                        BorderRadius.all(Radius.circular(10)),
                                   ),
                                   shadows: <BoxShadow>[
                                     BoxShadow(
@@ -482,7 +495,7 @@ class _mainScreenState extends State<mainScreen> {
                                   ),
                                   shape: RoundedRectangleBorder(
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                        BorderRadius.all(Radius.circular(10)),
                                   ),
                                   shadows: <BoxShadow>[
                                     BoxShadow(
@@ -505,7 +518,6 @@ class _mainScreenState extends State<mainScreen> {
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
