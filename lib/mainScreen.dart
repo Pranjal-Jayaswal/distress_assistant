@@ -49,9 +49,23 @@ class _mainScreenState extends State<mainScreen> {
     super.initState();
   }
 
-  void call1() async{
-   await launch('tel:9264472977');
-
+  void call1() async {
+    await launch('tel:100');
+  }
+  void call2() async {
+    await launch('tel:102');
+  }
+  void call3() async {
+    await launch('tel:101');
+  }
+  void call4() async {
+    await launch('tel:1091');
+  }
+  void call5() async {
+    await launch('tel:1078');
+  }
+  void call6() async {
+    await launch('tel:1363');
   }
 
   void lat_long() async {
@@ -177,39 +191,324 @@ class _mainScreenState extends State<mainScreen> {
                         ],
                       ),
                       child: Padding(
-                        padding: EdgeInsets.fromLTRB(24, 8, 8, 8),
+                        padding: EdgeInsets.fromLTRB(15, 6, 0, 6),
                         child: Text(
-                          "SHAKE YOUR DEVICE \n                or\n TAP TO SEND TEXT",
+                          "  SHAKE YOUR DEVICE \n                   or\nTAP HERE TO SEND SMS",
                           style: TextStyle(
                               fontSize: 24, fontStyle: FontStyle.italic),
                         ),
                       ),
                     ),
                   ),
-                  FlatButton(
-                    onPressed: null,
-                    child: Container(
-                      child: Text(
-                        '8340792564',
-                        style: TextStyle(
-                            color: Colors.white, backgroundColor: Colors.green),
-                      ),
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.all(0),
+                          height: 80,
+                          width: 160,
+                          padding: EdgeInsets.all(8.0),
+                          decoration: ShapeDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color(0xFF115E9B),
+                                Color(0xFF9452A5),
+                              ],
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                            ),
+                            shadows: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.blueAccent,
+                                offset: Offset(1.0, 6.0),
+                                blurRadius: 30.0,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(11, 20, 0, 8),
+                            child: Text(
+                              " TAP and CALL",
+                              style: TextStyle(
+                                  fontSize: 18, fontStyle: FontStyle.italic),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+
+                              onPressed: () {
+                                call1();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(9, 28, 9, 15),
+                                  child: Text(
+
+                                    "Dial  100",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+                              onPressed: () {
+                                call2();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                //  margin: EdgeInsets.only(bottom: 15.0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(8.0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 20, 2, 15),
+                                  child: Text(
+                                    "Ambulance",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+                              onPressed: () {
+                                call3();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                //  margin: EdgeInsets.only(bottom: 15.0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(8.0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 10, 3, 15),
+                                  child: Text(
+                                    "     Fire  Assistance",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: <Widget>[
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+
+                              onPressed: () {
+                                call4();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(11, 8, 9, 15),
+                                  child: Text(
+                                    "Women Safety Helpline",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+                              onPressed: () {
+                                call5();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                //  margin: EdgeInsets.only(bottom: 15.0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(8.0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(3, 10, 3, 15),
+                                  child: Text(
+                                    "  Disaster Assistance",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            FlatButton(
+                              padding: EdgeInsets.all(9),
+                              onPressed: () {
+                                call6();
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                //  margin: EdgeInsets.only(bottom: 15.0),
+                                height: 90,
+                                width: 100,
+                                padding: EdgeInsets.all(8.0),
+                                decoration: ShapeDecoration(
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xFF115E9B),
+                                      Color(0xFF9452A5),
+                                    ],
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  shadows: <BoxShadow>[
+                                    BoxShadow(
+                                      color: Colors.blueAccent,
+                                      offset: Offset(1.0, 6.0),
+                                      blurRadius: 20.0,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 10, 5, 15),
+                                  child: Text(
+                                    " Tourist Helpline",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                      ],
                     ),
                   ),
-                  FlatButton(
-                      onPressed: () {
-                        call1();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(28.0),
-                        child: Text(
-                          '9264472977',
-                          style: TextStyle(
-                              color: Colors.white,
-                              backgroundColor: Colors.green),
-                        ),
-                      )),
-                  FlatButton(onPressed: null, child: Text('100')),
                   Container(
                     decoration: ShapeDecoration(
                       gradient: LinearGradient(
