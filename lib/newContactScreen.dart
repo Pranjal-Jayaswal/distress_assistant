@@ -160,45 +160,49 @@ class _newContactState extends State<newContact> {
                           ),
                         ),
                       ),
-                ListTile(
-                  leading: Icon(Icons.people, color: Colors.white),
-                  title: TextField(
-                    controller: _controllerPeople,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: " Add Contact",
-                      hintStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w100),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: Icon(Icons.people, color: Colors.red),
+                    title: TextField(
+                      controller: _controllerPeople,
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: " Tap to Add Contacts",
+                        hintStyle: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w100),
+                      ),
+                      keyboardType: TextInputType.number,
+                      onChanged: (String value) => setState(() {}),
                     ),
-                    keyboardType: TextInputType.number,
-                    onChanged: (String value) => setState(() {}),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.add, color: Colors.white),
-                    onPressed: _controllerPeople.text.isEmpty
-                        ? null
-                        : () => setState(() {
-                              people.add("+91" + _controllerPeople.text.toString());
-                              _controllerPeople.clear();
-                              print(people);
-                            }),
+                    trailing: IconButton(
+                      icon: Icon(Icons.add, color: Colors.red),
+                      onPressed: _controllerPeople.text.isEmpty
+                          ? null
+                          : () => setState(() {
+                                people.add("+91" + _controllerPeople.text.toString());
+                                _controllerPeople.clear();
+                              }),
+                    ),
                   ),
                 ),
                 Divider(color: Colors.white),
-                ListTile(
-                  leading: Icon(Icons.message, color: Colors.white),
-                  title: TextField(
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: " Add Message",
-                      hintStyle: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w100),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListTile(
+                    leading: Icon(Icons.message, color: Colors.red),
+                    title: TextField(
+                      style: TextStyle(color: Colors.white),
+                      decoration: InputDecoration(
+                        hintText: "Tap to Add Message",
+                        hintStyle: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w100),
+                      ),
+                      controller: _controllermsg,
+                      onChanged: (String value) => setState(() {
+                        msg = _controllermsg.text;
+                      }),
                     ),
-                    controller: _controllermsg,
-                    onChanged: (String value) => setState(() {
-                      msg = _controllermsg.text;
-                      print(msg);
-                    }),
                   ),
                 ),
                 Divider(color: Colors.white),
@@ -208,10 +212,11 @@ class _newContactState extends State<newContact> {
                     textColor: Colors.white,
                     padding: EdgeInsets.all(12),
                     onPressed: () {
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => newContact(),
+                            builder: (context) => mainScreen(),
                           ));
                     },
                     child: Text(
@@ -271,7 +276,6 @@ class _newContactState extends State<newContact> {
                         onTabChange: (index) {
                           setState(() {
                             _selectedIndex = index;
-                            print('selected state: $_selectedIndex');
                             Nclicked();
                           });
                         }),

@@ -82,7 +82,6 @@ class _mainScreenState extends State<mainScreen> {
     try {
       position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
-      print(position);
     } catch (e) {
       print(e);
     }
@@ -568,7 +567,6 @@ class _mainScreenState extends State<mainScreen> {
                           onTabChange: (index) {
                             setState(() {
                               _selectedIndex = index;
-                              print('selected state: $_selectedIndex');
                               Nclicked();
                             });
                           }),
