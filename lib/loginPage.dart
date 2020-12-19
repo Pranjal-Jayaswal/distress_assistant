@@ -34,7 +34,7 @@ class _loginPageState extends State<loginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-
+              Text('Distress Assistant'),
               Container(
                 height: 130,
                 width: 130,
