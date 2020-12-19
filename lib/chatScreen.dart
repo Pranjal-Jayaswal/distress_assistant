@@ -11,6 +11,7 @@ import 'newContactScreen.dart';
 final FirebaseAuth auth = FirebaseAuth.instance;
 
 User user;
+int number=1;
 void inputData() {
   user = auth.currentUser;
   final uid = user.uid;
@@ -169,6 +170,7 @@ class _chatScreenState extends State<chatScreen> {
                                       .add({
                                     'text': messageText,
                                     'sender': user.email,
+                                    'number' : number++,
                                   });
                                 },
                                 child: Text(
@@ -253,7 +255,7 @@ class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('mymessage').snapshots(),
+      stream: FirebaseFirestore.instance.collection('mymessage').orderBy('number').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
