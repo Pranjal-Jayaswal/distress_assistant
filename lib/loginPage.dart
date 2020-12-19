@@ -1,4 +1,5 @@
 import 'package:distress_assistant/mainScreen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:distress_assistant/Constants.dart';
@@ -34,7 +35,15 @@ class _loginPageState extends State<loginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text('Distress Assistant'),
+              Text(
+                'Distress Assistant',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'IndieFlower'
+                ),
+              ),
               Container(
                 height: 130,
                 width: 130,
