@@ -3,7 +3,7 @@
  Distress_assistant
 </h1>
 
-• A cross platform mobile application built to impart assistance and medium
+• A cross platform mobile application (~ 7MB) built to impart assistance and medium
 of connection to dear ones in time of stress on one shake/tap of device.
 
 
